@@ -1,0 +1,32 @@
+
+footer {
+  background: linear-gradient(135deg, #172554, #1e40af);
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 40px;
+  border-top: 4px solid #60a5fa;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  color: #dbeafe;
+}
+
+footer p:hover {
+  color: white;
+  transition: 0.3s;
+}
+
+@media (max-width: 600px) {
+  footer {
+    padding: 20px 10px;
+  }
+
+  footer p {
+    font-size: 13px;
+  }
+}

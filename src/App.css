@@ -182,3 +182,146 @@
     border-right-color: var(--border);
   }
 }
+
+/* General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6fb;
+  color: #263248;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main */
+.main-content {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  flex: 1;
+}
+
+.main-content h1 {
+  text-align: center;
+  color: #243b67;
+  margin-bottom: 35px;
+  font-size: 32px;
+}
+
+/* Form section */
+.form-section {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  margin-bottom: 35px;
+}
+
+.form-section h2,
+.students-section h2 {
+  color: #243b67;
+  margin-bottom: 22px;
+  font-size: 23px;
+}
+
+.form-section form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.form-section input,
+.form-section select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d6dce8;
+  border-radius: 7px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.form-section input:focus,
+.form-section select:focus {
+  border-color: #3867d6;
+  box-shadow: 0 0 5px rgba(56, 103, 214, 0.2);
+}
+
+/* Buttons */
+button {
+  background: #3867d6;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #244ca8;
+  transform: translateY(-2px);
+}
+
+.form-section form button {
+  grid-column: span 2;
+}
+
+/* Students */
+.students-section {
+  margin-top: 30px;
+}
+
+.students {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.students p {
+  color: #777;
+  padding: 20px;
+}
+
+/* Footer */
+footer {
+  background: #243b67;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .main-content {
+    width: 94%;
+    margin: 25px auto;
+  }
+
+  .main-content h1 {
+    font-size: 25px;
+  }
+
+  .form-section {
+    padding: 20px;
+  }
+
+  .form-section form {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section form button {
+    grid-column: span 1;
+  }
+}

@@ -1,0 +1,86 @@
+
+/* Student Card */
+.student-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 5px solid #3867d6;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.student-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.13);
+}
+
+/* Header */
+.student-card h2 {
+  color: #243b67;
+  font-size: 22px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e8edf5;
+}
+
+/* Student information */
+.student-card p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.student-card strong {
+  color: #243b67;
+}
+
+/* Contact information */
+.coordonnees {
+  background: #f0f4ff;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+  border-left: 3px solid #3867d6;
+}
+
+/* Buttons */
+.student-card button {
+  padding: 11px 14px;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 5px 4px 5px 0;
+  transition: 0.3s;
+}
+
+.btn-contact {
+  background: #3867d6;
+}
+
+.btn-modifier {
+  background: #e6a23c;
+}
+
+.btn-supprimer {
+  background: #e74c3c;
+}
+
+.student-card button:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .student-card {
+    padding: 18px;
+  }
+
+  .student-card button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}

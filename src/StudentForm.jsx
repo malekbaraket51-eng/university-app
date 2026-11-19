@@ -2,20 +2,32 @@
 import { useState } from "react";
 import "./studentform.css";
 
-function StudentForm({ ajouterEtudiant, fermerFormulaire }) {
+function StudentForm({
+  ajouterEtudiant,
+  modifierEtudiant,
+  etudiant,
+  fermerFormulaire,
+}) {
+  const [prenom, setPrenom] = useState(etudiant?.prenom || "");
+  const [nom, setNom] = useState(etudiant?.nom || "");
+  const [email, setEmail] = useState(etudiant?.email || "");
+  const [telephone, setTelephone] = useState(etudiant?.telephone || "");
 
-  const [prenom, setPrenom] = useState("");
-  const [nom, setNom] = useState("");
-  const [email, setEmail] = useState("");
-  const [telephone, setTelephone] = useState("");
   const [filiere, setFiliere] = useState(
-    "Génie Logiciel et Systèmes d'Information"
+    etudiant?.filiere || "GLSI"
   );
-  const [anneeEtude, setAnneeEtude] = useState("2ème année");
-  const [groupe, setGroupe] = useState("GLSI 2");
-  const [ville, setVille] = useState("");
 
-  // Ajouter un étudiant
+  const [anneeEtude, setAnneeEtude] = useState(
+    etudiant?.anneeEtude || "2ème année"
+  );
+
+  const [groupe, setGroupe] = useState(
+    etudiant?.groupe || "GLSI 2"
+  );
+
+  const [ville, setVille] = useState(etudiant?.ville || "");
+
+  // Ajouter ou modifier un étudiant
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -24,28 +36,35 @@ function StudentForm({ ajouterEtudiant, fermerFormulaire }) {
       return;
     }
 
-    const nouvelEtudiant = {
+    const donnees = {
       prenom: prenom.trim(),
       nom: nom.trim(),
-      email,
-      telephone,
+      email: email.trim(),
+      telephone: telephone.trim(),
       filiere,
       anneeEtude,
       groupe,
-      ville
+      ville: ville.trim(),
     };
 
-    ajouterEtudiant(nouvelEtudiant);
+    if (etudiant) {
+      modifierEtudiant(etudiant.id, donnees);
+      alert("Étudiant modifié avec succès !");
+    } else {
+      ajouterEtudiant(donnees);
+      alert("Étudiant ajouté avec succès !");
+    }
 
     fermerFormulaire();
   };
 
   return (
     <div className="form-overlay">
-
       <div className="student-form">
 
-        <h2>Ajouter un étudiant</h2>
+        <h2>
+          {etudiant ? "Modifier un étudiant" : "Ajouter un étudiant"}
+        </h2>
 
         <form onSubmit={handleSubmit}>
 
@@ -83,6 +102,7 @@ function StudentForm({ ajouterEtudiant, fermerFormulaire }) {
             value={filiere}
             onChange={(e) => setFiliere(e.target.value)}
           >
+            <option value="GLSI">GLSI</option>
             <option value="Génie Logiciel et Systèmes d'Information">
               Génie Logiciel et Systèmes d'Information
             </option>
@@ -130,9 +150,7 @@ function StudentForm({ ajouterEtudiant, fermerFormulaire }) {
           </div>
 
         </form>
-
       </div>
-
     </div>
   );
 }

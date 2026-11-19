@@ -46,6 +46,7 @@ function App() {
   ]);
 
   const [afficherForm, setAfficherForm] = useState(false);
+  const [etudiantAModifier, setEtudiantAModifier] = useState(null);
 
   // Ajouter un étudiant
   const ajouterEtudiant = (nouvelEtudiant) => {
@@ -65,20 +66,27 @@ function App() {
     );
   };
 
-  // Modifier toutes les informations de l'étudiant
+  // Modifier un étudiant
   const modifierEtudiant = (id, nouvellesDonnees) => {
     setEtudiants((anciens) =>
-      anciens.map((etudiant) => {
-        if (etudiant.id === id) {
-          return {
-            ...etudiant,
-            ...nouvellesDonnees,
-          };
-        }
-
-        return etudiant;
-      })
+      anciens.map((etudiant) =>
+        etudiant.id === id
+          ? { ...etudiant, ...nouvellesDonnees }
+          : etudiant
+      )
     );
+  };
+
+  // Ouvrir formulaire de modification
+  const ouvrirModification = (etudiant) => {
+    setEtudiantAModifier(etudiant);
+    setAfficherForm(true);
+  };
+
+  // Fermer formulaire
+  const fermerFormulaire = () => {
+    setAfficherForm(false);
+    setEtudiantAModifier(null);
   };
 
   return (
@@ -93,15 +101,20 @@ function App() {
 
           <button
             type="button"
-            onClick={() => setAfficherForm(true)}
+            onClick={() => {
+              setEtudiantAModifier(null);
+              setAfficherForm(true);
+            }}
           >
             + Ajouter un étudiant
           </button>
 
           {afficherForm && (
             <StudentForm
+              etudiant={etudiantAModifier}
               ajouterEtudiant={ajouterEtudiant}
-              fermerFormulaire={() => setAfficherForm(false)}
+              modifierEtudiant={modifierEtudiant}
+              fermerFormulaire={fermerFormulaire}
             />
           )}
         </section>
@@ -116,7 +129,9 @@ function App() {
                 key={etudiant.id}
                 {...etudiant}
                 supprimerEtudiant={supprimerEtudiant}
-                modifierEtudiant={modifierEtudiant}
+                ouvrirFormulaireModification={() =>
+                  ouvrirModification(etudiant)
+                }
               />
             ))}
           </div>
